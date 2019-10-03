@@ -2,8 +2,8 @@ import { Money } from '../src/Money'
 
 test('Multiplication', () => {
     const five = Money.dollar(5)
-    expect(Money.dollar(10)).toEqual(five.times(2))
-    expect(Money.dollar(15)).toEqual(five.times(3))
+    expect(Money.dollar(10)).toStrictEqual(five.times(2))
+    expect(Money.dollar(15)).toStrictEqual(five.times(3))
 })
 
 test('Equality', () => {
@@ -20,3 +20,7 @@ test('FrancMultiplication', () => {
     expect(Money.franc(15)).toEqual(five.times(3))
 })
 
+test('Currency', () => {
+    expect('USD').toEqual(Money.dollar(1).currency)
+    expect('CHF').toEqual(Money.franc(1).currency)
+})
