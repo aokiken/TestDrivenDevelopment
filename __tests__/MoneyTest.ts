@@ -1,5 +1,6 @@
 import { Money } from '../src/Money'
 import { Bank } from '../src/Bank'
+import { Sum } from "../src/Sum";
 
 test('Multiplication', () => {
     const five = Money.dollar(5)
@@ -26,3 +27,16 @@ test('SimpleAddition', () => {
     expect(Money.dollar(10)).toEqual(reduced)
 })
 
+test('PlusReturnsSum', () => {
+    const five = Money.dollar(5)
+    const sum = five.plus(five)
+    expect(five).toEqual(sum.augend)
+    expect(five).toEqual(sum.addend)
+})
+
+test('ReduceSum', () => {
+    const sum = new Sum(Money.dollar(3), Money.dollar(4))
+    const bank = new Bank()
+    const result = bank.reduce(sum, 'USD')
+    expect(Money.dollar(7)).toEqual(result)
+})
