@@ -57,3 +57,12 @@ test('ReduceMoneyDifferentCurrency', () => {
 test('IdentityRate', () => {
     expect(1).toEqual(new Bank().rate('USD', 'USD'))
 })
+
+test('MixedAddition', () => {
+    const fiveBucks = Money.dollar(5)
+    const tenFrancs = Money.franc(10)
+    const bank = new Bank()
+    bank.addRate('CHF', 'USD', 2)
+    const result = bank.reduce(fiveBucks.plus(tenFrancs), 'USD')
+    expect(Money.dollar(10)).toStrictEqual(result)
+})
