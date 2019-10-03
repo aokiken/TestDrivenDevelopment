@@ -7,9 +7,17 @@ export class Money {
         this.currency = currency
     }
 
+    times(multiplier: number) {
+        return new Money(this.amount * multiplier, this.currency)
+    }
+
     equals(money: Money) {
         return this.amount === money.amount
-            && this.constructor.name === money.constructor.name
+            && this.currency === money.currency
+    }
+
+    toString() {
+        return `${this.amount} ${this.currency}`
     }
 
     static dollar(amount: number) {
@@ -26,20 +34,10 @@ export class Franc extends Money {
     constructor(amount: number, currency: string) {
         super(amount, currency)
     }
-
-    times(multiplier: number) {
-        return new Franc(this.amount * multiplier)
-    }
-
 }
 
 export class Dollar extends Money {
     constructor(amount: number, currency: string) {
         super(amount, currency)
     }
-
-    times(multiplier: number) {
-        return new Dollar(this.amount * multiplier)
-    }
-
 }
