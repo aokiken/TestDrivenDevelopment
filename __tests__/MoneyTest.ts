@@ -2,8 +2,11 @@ import { Dollar } from "../src/Dollar"
 
 test('Multiplication', () => {
     const five = new Dollar(5)
-    let product = five.times(2)
-    expect(10).toEqual(product.amount)
-    product = five.times(3)
-    expect(15).toEqual(product.amount)
+    expect(new Dollar(10)).toEqual(five.times(2))
+    expect(new Dollar(15)).toEqual(five.times(3))
+})
+
+test('Equality', () => {
+    expect(new Dollar(5).equals(new Dollar(5))).toBe(true)
+    expect(new Dollar(5).equals(new Dollar(6))).toBe(false)
 })
