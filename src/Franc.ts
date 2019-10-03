@@ -1,7 +1,10 @@
-export class Franc {
+import { Money } from './Money'
+
+export class Franc extends Money {
     readonly amount: number
 
     constructor(amount: number) {
+        super()
         this.amount = amount
     }
 
@@ -9,7 +12,4 @@ export class Franc {
         return new Franc(this.amount * multiplier)
     }
 
-    equals(franc: Franc) {
-        return this.amount === franc.amount
-    }
 }
